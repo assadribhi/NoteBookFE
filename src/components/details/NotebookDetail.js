@@ -16,13 +16,13 @@ import noteStore from "../../stores/noteStore";
 import { DetailWrapper } from "../../styles";
 // import DeleteButton from "./buttons/DeleteButton";
 // import UpdateButton from "./buttons/UpdateButton";
-import AddButton from "../buttons/AddButton";
+// import AddButton from "../buttons/AddButton";
 
 const NotebookDetail = (props) => {
   const { notebookId } = useParams();
 
   const notebook = notebookStore.notebooks.find(
-    (notebook) => notebook.id === notebookId
+    (notebook) => notebook.id === +notebookId
   );
   if (!notebook) return <Redirect to="/notebooks" />;
 
@@ -40,11 +40,10 @@ const NotebookDetail = (props) => {
         <p className="notebookDescription">{notebook.description} </p>
         {/* <UpdateButton notebook={notebook} />
         <DeleteButton notebookId={notebook.id} /> */}
+        <NoteList notes={notes} />
       </DetailWrapper>
 
-      <NoteList notes={notes} />
-
-      <AddButton notebook={notebook} />
+      {/* <AddButton notebook={notebook} /> */}
     </div>
   );
 };
